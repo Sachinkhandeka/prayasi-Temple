@@ -8,6 +8,7 @@ const app = express();
 const mongoose = require("mongoose");
 const DB_URL = process.env.MONGO_URL ; 
 const cors = require("cors");
+const path = require("path");
 
 //importing routes 
 const daanRoute = require("./routes/daan");
