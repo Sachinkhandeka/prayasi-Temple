@@ -31,6 +31,9 @@ app.use(cors());
 //routes 
 app.use("/api/daan", daanRoute);
 
+//static folder for client side pages 
+app.use(express.static((path.join(__dirname , '../client/dist'))));
+
 //error handling middleware 
 app.use((err ,req ,res ,next)=> {
     let { status = 500 , message = "Some Error Occured" } = err ; 
