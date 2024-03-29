@@ -7,6 +7,7 @@ const port = process.env.port || 8080 ;
 const app = express();
 const mongoose = require("mongoose");
 const DB_URL = process.env.MONGO_URL ; 
+const cors = require("cors");
 
 //importing routes 
 const daanRoute = require("./routes/daan");
@@ -25,6 +26,7 @@ async function main () {
 //helpfull middlewares 
 app.use(express.json());
 app.use(express.urlencoded({extended : true}));
+app.use(cors());
 
 //routes 
 app.use("/api/daan", daanRoute);
