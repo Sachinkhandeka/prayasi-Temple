@@ -34,6 +34,11 @@ app.use("/api/daan", daanRoute);
 //static folder for client side pages 
 app.use(express.static((path.join(__dirname , '../client/dist'))));
 
+//route that does not matches any of the above rote will handled here 
+app.all("*" , (req ,res)=> {
+    res.sendFile(path.join(__dirname , "../client/dist" , "index.html"));
+});
+
 //error handling middleware 
 app.use((err ,req ,res ,next)=> {
     let { status = 500 , message = "Some Error Occured" } = err ; 
