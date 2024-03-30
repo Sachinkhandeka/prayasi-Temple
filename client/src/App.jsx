@@ -1,6 +1,7 @@
 import React, { Suspense } from "react"
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Header from "./Components/Header";
+import { Spinner } from "flowbite-react";
 
 const DaanComp = React.lazy(()=> import("./pages/DaanComp"));
 const CreateDaan = React.lazy(()=> import("./pages/CreateDaan"));
@@ -19,7 +20,10 @@ export default function App() {
           path="/" 
           element={
             <Suspense fallback={
-              <div>Loading ...</div>
+              <div className="flex justify-center items-center min-h-screen gap-4" >
+                  <Spinner size={"xl"} />
+                  <div>Loading ...</div>
+              </div>
             } >
               <DaanComp />
             </Suspense>
@@ -29,7 +33,10 @@ export default function App() {
           path="/daan/create"
           element={
             <Suspense fallback={
-              <div>Loading ...</div>
+              <div className="flex justify-center items-center min-h-screen gap-4" >
+                  <Spinner size={"xl"} />
+                  <div>Loading ...</div>
+              </div>
             } >
               <CreateDaan />
             </Suspense>
@@ -39,7 +46,10 @@ export default function App() {
           path="/daan/:id"
           element={
             <Suspense fallback={
-              <div>Loading ...</div>
+              <div className="flex justify-center items-center min-h-screen gap-4" >
+                  <Spinner size={"xl"} />
+                  <div>Loading ...</div>
+              </div>
             } >
               <CardComp />
             </Suspense>
@@ -49,7 +59,10 @@ export default function App() {
            path="/daan/edit/:id"
            element={
             <Suspense fallback={
-              <div>Loading ...</div>
+              <div className="flex justify-center items-center min-h-screen gap-4" >
+                  <Spinner size={"xl"} />
+                  <div>Loading ...</div>
+              </div>
             } >
               <EditDaan />
             </Suspense>
@@ -59,7 +72,10 @@ export default function App() {
            path="/daan/search"
            element={
             <Suspense fallback={
-              <div>Loading ...</div>
+              <div className="flex justify-center items-center min-h-screen gap-4" >
+                  <Spinner size={"xl"} />
+                  <div>Loading ...</div>
+              </div>
             } >
               <Search />
             </Suspense>
