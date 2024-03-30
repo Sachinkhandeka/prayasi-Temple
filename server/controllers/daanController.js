@@ -44,12 +44,12 @@ module.exports.getDataController = async(req ,res)=> {
         now.getDate(),
     );
 
-    const lastMontDaan = await Daan.countDocuments({ createdAt : { $gte : oneMonthAgo } });
+    const lastMonthDaan = await Daan.countDocuments({ createdAt : { $gte : oneMonthAgo } });
 
     res.status(200).json({
         daans,
         total,
-        lastMontDaan,
+        lastMonthDaan,
     });
 }
 

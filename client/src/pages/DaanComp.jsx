@@ -1,6 +1,6 @@
 import { useState , useEffect } from "react";
 import { Table, Alert, Modal, Button, Dropdown } from "flowbite-react";
-import { HiOutlineExclamationCircle, HiOutlineEye } from "react-icons/hi";
+import { HiAnnotation, HiArrowNarrowUp, HiOutlineExclamationCircle, HiOutlineEye } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 import { FaPencil } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
@@ -9,6 +9,8 @@ import { Link, useLocation } from "react-router-dom";
 export default function DaanComp() {
     const location = useLocation();
     const [ daans , setDaans ] = useState([]);
+    const [ total , setTotal ] = useState(null);
+    const [ lastMonth , setLastMonth ] = useState(null);
     const [ error , setError ] = useState(null);
     const [ success , setSuccess ] = useState(null);
     const [ showModal , setShowModal ] = useState(false);
@@ -30,6 +32,8 @@ export default function DaanComp() {
                     return;
                 }
                 setDaans(data.daans);
+                setTotal(data.total);
+                setLastMonth(data.lastMonthDaan);
             }catch(err) {
                 setError(err.message);
             }
@@ -86,6 +90,8 @@ export default function DaanComp() {
                     return;
                 }
                 setDaans(data.daans);
+                setTotal(data.total);
+                setLastMonth(data.lastMonthDaan);
             }catch(err) { 
                 setError(err.message);
             }
@@ -128,6 +134,28 @@ export default function DaanComp() {
                 </Dropdown>
             </div>
         </div>
+        { daans && daans.length > 0 && (
+            <div className="p-3 md:mx-auto md:inline-block" >
+                <div className="flex flex-wrap gap-5 justify-center md: w-full" >
+                    <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 lg:w-72 w-full rounded-md border border-slate-100 shadow-lg" >
+                        <div className="flex justify-between" >
+                            <div className="" >
+                                <h3 className="text-gray-500 text-md uppercase" >Total</h3>
+                                <p className="text-2xl" >{ total }</p>
+                            </div>
+                            <HiAnnotation className="bg-teal-600 text-white rounded-full text-5xl p-3 shadow-lg"  />      
+                        </div>
+                        <div className="flex gap-2 text-sm" >
+                            <span className={`${ lastMonth === 0 ? 'text-black' : 'text-green-500' } flex items-center`} >
+                                { lastMonth === 0 ? '' : <HiArrowNarrowUp /> }
+                                { lastMonth }
+                            </span>
+                            <div className="text-gray-500 " >Last month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ) }
         { daans && daans.length > 0 ?  (
         <div className="overflow-x-auto m-4">
           <Table className="border border-slate-200 shadow-lg rounded-lg h-full" >
