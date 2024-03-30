@@ -33,7 +33,7 @@ module.exports.getDataController = async(req ,res)=> {
                 { gaam : { $regex : req.query.searchTerm , $options : 'i' } },
             ],
         })
-    }).skip(startIndx).sort({ updateAt : sortDirection });
+    }).skip(startIndx).sort({ updatedAt: sortDirection });
 
     const total = await Daan.countDocuments();
 
